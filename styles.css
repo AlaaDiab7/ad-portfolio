@@ -8,20 +8,29 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    /*background: #f4f4f4;*/
     display: flex;
     min-height: 100vh;
     color: #333;
 }
 
-/* Header animation from lecture */
+/* Header fixed at top, right of sidebar */
 header {
+    position: fixed;
+    top: 0;
+    left: 220px; /* sidebar width */
+    width: calc(100% - 220px);
+    height: 60px;
     background-color: #333;
     color: white;
-    padding: 20px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
     animation: slide 2s ease-in-out infinite;
+    z-index: 1001;
 }
 
+/* Header animation */
 @keyframes slide {
     0% { transform: translateX(0); }
     50% { transform: translateX(20px); }
@@ -29,17 +38,19 @@ header {
 }
 
 /* Sidebar Navigation */
-
 .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
     background-color: #444;
     color: white;
-    width: 220px;
-    flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 0; bottom: 0; left: 0;
-    padding: 20px;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    z-index: 1000;
 }
 
 #navToggle {
@@ -69,7 +80,7 @@ header {
     transition: color 0.3s ease;
 }
 
-/* Smooth color transition on hover from lecture style */
+/* Smooth color transition on hover */
 .nav-list a:hover {
     color: red;
 }
@@ -81,7 +92,7 @@ header {
 /* Main content */
 main#mainContent {
     margin-left: 220px;
-    padding: 20px;
+    padding: 80px 20px 20px; /* top padding to clear header */
     flex-grow: 1;
 }
 
@@ -149,29 +160,45 @@ button[type="submit"]:focus {
         font-size: 1.2em;
     }
 
+    /* Header full width on mobile */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        padding: 10px 15px;
+        z-index: 1001;
+    }
+
+    /* Sidebar becomes relative and full width below header */
     .sidebar {
         position: relative;
+        top: 50px; /* below header */
         width: 100%;
         height: auto;
         flex-direction: row;
-        padding: 10px 20px;
+        padding: 5px 10px;
         align-items: center;
+        background-color: #444;
+        z-index: 1000;
     }
 
     #navToggle {
         display: block;
+        margin-right: 10px;
     }
 
     .nav-list {
         position: absolute;
-        top: 3.5rem;
+        top: 50px;
         left: 0;
         background: #444;
         width: 100%;
         flex-direction: column;
         padding: 10px 0;
         display: none;
-        z-index: 1000;
+        z-index: 1002;
     }
 
     .nav-list.show {
@@ -185,6 +212,6 @@ button[type="submit"]:focus {
 
     main#mainContent {
         margin-left: 0;
-        padding: 15px 10px;
+        padding: 70px 15px 20px; /* top padding for fixed header */
     }
 }
