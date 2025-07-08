@@ -4,19 +4,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navToggle.addEventListener('click', () => {
         const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-        navToggle.setAttribute('aria-expanded', String(!isExpanded));
-        navList.classList.toggle('show');
+
+        if (!isExpanded) {
+            navList.style.maxHeight = navList.scrollHeight + "px";
+            navList.classList.add('show');
+            navToggle.setAttribute('aria-expanded', 'true');
+        } else {
+            navList.style.maxHeight = "0";
+            navList.classList.remove('show');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
     });
 
-    // Smooth scroll behavior for nav links (optional)
+    // Smooth scroll behavior + collapse menu on click
     document.querySelectorAll('.nav-list a').forEach(link => {
         link.addEventListener('click', () => {
+            navList.style.maxHeight = "0";
             navList.classList.remove('show');
             navToggle.setAttribute('aria-expanded', 'false');
         });
     });
 
-    // Contact form interactivity (simple example)
+    // Reset nav if screen is resized to large view
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navList.style.maxHeight = null;
+            navList.classList.remove('show');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Contact form interactivity
     const form = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
 

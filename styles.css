@@ -9,6 +9,7 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     display: flex;
+    flex-direction: column;
     min-height: 100vh;
     color: #333;
 }
@@ -23,6 +24,7 @@ header {
     background-color: #333;
     color: white;
     padding: 10px 20px;
+    border-radius: 3px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -150,7 +152,9 @@ button[type="submit"] {
 button[type="submit"]:hover,
 button[type="submit"]:focus {
     background-color: #555;
-    outline: none;
+    /*outline: none;*/
+    outline: 2px solid red;
+
 }
 
 /* Responsive */
@@ -187,22 +191,29 @@ button[type="submit"]:focus {
     #navToggle {
         display: block;
         margin-right: 10px;
+        border-radius: 4px;
     }
 
+    #navToggle:focus {
+        outline: 2px solid red;
+    }
     .nav-list {
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease;
         position: absolute;
         top: 50px;
         left: 0;
         background: #444;
         width: 100%;
         flex-direction: column;
-        padding: 10px 0;
-        display: none;
+        padding: 0;
         z-index: 1002;
+        display: flex;
     }
 
     .nav-list.show {
-        display: flex;
+        /* JS sets max-height dynamically */
     }
 
     .nav-list li {
@@ -214,4 +225,14 @@ button[type="submit"]:focus {
         margin-left: 0;
         padding: 70px 15px 20px; /* top padding for fixed header */
     }
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 0.9rem;
+    margin-top: auto;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
 }
