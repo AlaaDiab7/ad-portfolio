@@ -1,0 +1,160 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Sidebar styles */
+.sidebar {
+    background-color: #222;
+    color: white;
+    width: 220px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; bottom: 0; left: 0;
+    padding: 1rem;
+}
+
+#navToggle {
+    display: none;
+    background: #444;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav-list a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.nav-list a:hover,
+.nav-list a:focus {
+    background-color: #555;
+    outline: none;
+}
+
+/* Main content styles */
+main#mainContent {
+    margin-left: 220px;
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+section {
+    margin-bottom: 3rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Projects layout */
+.project-list {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.project-item {
+    flex: 1 1 300px;
+    background: #f7f7f7;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    gap: 0.75rem;
+}
+
+input, textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+button[type="submit"] {
+    background-color: #222;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    background-color: #555;
+    outline: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        padding: 0.5rem 1rem;
+        align-items: center;
+    }
+    #navToggle {
+        display: block;
+    }
+    .nav-list {
+        position: absolute;
+        top: 3rem;
+        left: 0;
+        background: #222;
+        width: 100%;
+        flex-direction: column;
+        padding: 1rem 0;
+        display: none;
+        z-index: 1000;
+    }
+    .nav-list.show {
+        display: flex;
+    }
+    .nav-list li {
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+    main#mainContent {
+        margin-left: 0;
+        padding: 1rem;
+    }
+}
